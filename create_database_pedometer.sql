@@ -9,6 +9,8 @@ CREATE TABLE WalkingSession(
     StopTime DATETIME NOT NULL,
     Duration DOUBLE NOT NULL,
     CountOfSteps INT NOT NULL,
+    MET FLOAT NOT NULL,
+    Weight INT NOT NULL,
     Calories DOUBLE NOT NULL,
     
     PRIMARY KEY (ID)
