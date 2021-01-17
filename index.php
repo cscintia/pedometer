@@ -41,24 +41,51 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM WalkingSession";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
+if(array_key_exists('button1', $_POST)) { 
+    button1();
+} 
+else if(array_key_exists('button2', $_POST)) { 
+    button2(); 
+} 
+function button1() { 
+  global $conn;
+  $sql = "SELECT ID, CountOfSteps, round(Calories,3) AS Calories FROM WalkingSession ORDER BY StopTime DESC LIMIT 1";
+  $result = $conn->query($sql);
+  
+  if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["ID"]. " - CountOfSteps: " . $row["CountOfSteps"]. " Calories: " . $row["Calories"]. "<br>";
+    echo "id: " . $row["ID"]. " - Lépésszám: " . $row["CountOfSteps"]. " Kalóriamennyiség: " . $row["Calories"]. " kcal<br>";
   }
-} else {
-  echo "0 results";
-}
+  } else {
+    echo "0 results";
+  } 
+    
+} 
+function button2() {
+  global $conn;
+  $sql = "SELECT ID, CountOfSteps, round(Calories,3) AS Calories FROM WalkingSession";
+  $result = $conn->query($sql);
+  
+  if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "id: " . $row["ID"]. " - Lépésszám: " . $row["CountOfSteps"]. " Kalóriamennyiség: " . $row["Calories"]. " kcal<br>";
+  }
+  } else {
+    echo "0 results";
+  } 
+} 
+
 $conn->close();
 ?>
 
 </p>
 
-<button class="button button1">Legutolsó aktivitás</button>
-<button class="button button2">Blue</button>
+<form method="post"> 
+<button type="submit" name="button1" class="button button1">Legutolsó aktivitás</button>
+<button type="submit" name="button2" class="button button2">Összes aktivitás</button>
+</form> 
 
 </body>
 </html>
