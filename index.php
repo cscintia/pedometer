@@ -19,8 +19,27 @@ body {
   cursor: pointer;
 }
 
-.button1 {background-color: #4CAF50;} /* Green */
-.button2 {background-color: #008CBA;} /* Blue */
+.button1 {background-color: #00A170;}
+.button2 {background-color: #0072B5;}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #FFFFFF;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #A0DAA9;
+}
+
+tr:nth-child(odd) {
+  background-color: #E9897E;
 </style>
 </head>
 <body>
@@ -53,10 +72,21 @@ function button1() {
   $result = $conn->query($sql);
   
   if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["ID"]. " - Lépésszám: " . $row["CountOfSteps"]. " Kalóriamennyiség: " . $row["Calories"]. " kcal<br>";
-  }
+    echo "<table>";
+    echo "  <tr>";
+    echo "    <th>ID</th>";
+    echo "    <th>Lépésszám</th>";
+    echo "    <th>Kalóriamennyiség</th>";
+    echo "  </tr>";
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      echo "  <tr>";
+      echo "    <td>" . $row["ID"] . "</td>";
+      echo "    <td>" . $row["CountOfSteps"] . "</td>";
+      echo "    <td>" . $row["Calories"] . " kcal</td>";
+      echo "  </tr>";
+    }
+    echo "</table>";
   } else {
     echo "0 results";
   } 
@@ -68,10 +98,21 @@ function button2() {
   $result = $conn->query($sql);
   
   if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "id: " . $row["ID"]. " - Lépésszám: " . $row["CountOfSteps"]. " Kalóriamennyiség: " . $row["Calories"]. " kcal<br>";
-  }
+    echo "<table>";
+    echo "  <tr>";
+    echo "    <th>ID</th>";
+    echo "    <th>Lépésszám</th>";
+    echo "    <th>Kalóriamennyiség</th>";
+    echo "  </tr>";
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      echo "  <tr>";
+      echo "    <td>" . $row["ID"] . "</td>";
+      echo "    <td>" . $row["CountOfSteps"] . "</td>";
+      echo "    <td>" . $row["Calories"] . " kcal</td>";
+      echo "  </tr>";
+    }
+    echo "</table>";
   } else {
     echo "0 results";
   } 
